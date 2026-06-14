@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LexTrack Central - Ordinance Detail View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Newsreader:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f9fb",
+                        "primary-container": "#131b2e",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline": "#76777d",
+                        "inverse-surface": "#2d3133",
+                        "primary": "#000000",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#45464d",
+                        "secondary-container": "#d5e3fd",
+                        "on-surface": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "on-tertiary-container": "#497cff",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "surface-tint": "#565e74",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-primary": "#bec6e0",
+                        "secondary": "#515f74",
+                        "surface-dim": "#d8dadc",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#00174b",
+                        "on-tertiary-fixed": "#00174b",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#57657b",
+                        "surface-bright": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "max-width": "1440px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Public Sans", "sans-serif"],
+                        "body-doc": ["Newsreader", "serif"],
+                        "h3": ["Public Sans", "sans-serif"],
+                        "caption": ["Public Sans", "sans-serif"],
+                        "body-doc-sm": ["Newsreader", "serif"],
+                        "h1": ["Public Sans", "sans-serif"],
+                        "h2": ["Public Sans", "sans-serif"],
+                        "body-ui": ["Public Sans", "sans-serif"],
+                        "label-caps": ["Public Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-doc": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-doc-sm": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-ui": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-ui min-h-screen flex flex-col">
+<!-- TopNavBar (Applies logic: Exact Match Priority "Database") -->
+<header class="bg-white dark:bg-slate-900 w-full sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between px-10 py-4 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-6">
+<div class="text-xl font-bold text-slate-900 dark:text-slate-50 tracking-tight font-h2 text-h2">
+                    LexTrack Central
+                </div>
+<nav class="hidden md:flex gap-6 font-public-sans text-sm font-medium">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded" href="#">Dashboard</a>
+<a class="text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1 font-bold px-3 py-2" href="#">Database</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded" href="#">Submissions</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-DEFAULT bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 text-sm" placeholder="Search..." type="text"/>
+</div>
+<button class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="close up headshot of a middle aged man with a neutral expression in a professional setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH7tUbihjDiD9RwuV-W8kk6_yy8huZSWCjNT9v3yS1PN6c4B606eoCr38p-frZVxVhA5ZYPzvUPRILuVuDbWJysyONb-mhKgM24HSe3kzTkGD7b0uGs6xtykpfu08VMWkTextJfdXYZrreCr4TErrqaR18NWM_8RCVxNFPKf0PzSRMAjYqSsYbNVHk3nObJK_Qd0A-sToCB_mN7XdLvblgmbmaXH5sXszvsVLv5I3gQ2_Og5ZZJPCj778m20UrluXwfoFx2I1INiA"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+<!-- SideNavBar (Suppressed due to Task-Focused Intent: Ordinance Detail View implies a temporary departure from global nav, focusing on content canvas. BUT prompt requested "Use the shared navigation components" broadly. Applying SideNav with 'All Ordinances' active based on Database context.) -->
+<aside class="bg-slate-50 dark:bg-slate-950 h-screen w-64 border-r border-slate-200 dark:border-slate-800 flex flex-col fixed left-0 top-0 py-6 hidden md:flex mt-[73px]">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-lg border border-outline-variant">
+                    MS
+                </div>
+<div>
+<h2 class="font-bold text-slate-900 dark:text-white font-label-bold text-label-bold">City Registry</h2>
+<p class="text-slate-600 dark:text-slate-400 font-caption text-caption">Legislative Division</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary-container text-on-primary font-label-bold text-label-bold py-2 rounded-DEFAULT flex items-center justify-center gap-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    New Ordinance
+                </button>
+</div>
+<nav class="flex-1 px-4 space-y-1 font-public-sans text-sm">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold border-l-4 border-slate-900 dark:border-slate-100" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                    All Ordinances
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    Recent Activity
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+                    Pending Review
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                    Archives
+                </a>
+</nav>
+<div class="px-4 mt-auto space-y-1 font-public-sans text-sm">
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="contact_support">contact_support</span>
+                    Contact Admin
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-lg min-h-screen">
+<!-- Page Header / Actions -->
+<div class="flex justify-between items-start mb-gutter">
+<div>
+<div class="flex items-center gap-sm mb-base">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+                            Back to Database
+                        </button>
+</div>
+<div class="flex items-center gap-md">
+<h1 class="font-h1 text-h1 text-primary">Ordinance No. 2024-042</h1>
+<div class="relative">
+<select class="appearance-none pl-3 pr-8 py-1 rounded-full bg-surface-container-high border border-outline-variant font-label-caps text-label-caps text-on-surface-variant uppercase cursor-pointer hover:bg-surface-variant transition-colors focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+<option selected="" value="pending">Pending Review</option>
+<option value="active">Active</option>
+<option value="amended">Amended</option>
+<option value="repealed">Repealed</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[18px] pointer-events-none text-on-surface-variant" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="px-4 py-2 border border-outline-variant rounded-DEFAULT text-primary font-label-bold text-label-bold hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="print">print</span>
+                        Print
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary rounded-DEFAULT font-label-bold text-label-bold hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit_document">edit_document</span>
+                        Edit Draft
+                    </button>
+</div>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Document Canvas -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Tabs -->
+<div class="flex border-b border-surface-variant">
+<button class="px-6 py-3 font-label-bold text-label-bold border-b-2 border-primary text-primary">Soft Copy (Editable Text)</button>
+<button class="px-6 py-3 font-label-bold text-label-bold border-b-2 border-transparent text-on-surface-variant hover:text-primary hover:border-outline-variant transition-colors">Hard Copy (PDF)</button>
+</div>
+<!-- Document Card -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT shadow-sm">
+<div class="p-lg border-b border-surface-variant bg-surface-bright">
+<h2 class="font-h2 text-h2 text-primary mb-xs">Zoning Amendment: Commercial Core District Overlay</h2>
+<p class="font-body-ui text-body-ui text-on-surface-variant">An ordinance to amend Title 17 (Zoning) of the Municipal Code to establish a new overlay district intended to promote mixed-use development and pedestrian-friendly infrastructure in the central commercial corridor.</p>
+</div>
+<div class="p-lg">
+<div class="font-body-doc text-body-doc text-on-surface space-y-6 max-w-prose mx-auto">
+<p><strong>WHEREAS</strong>, the City Council has determined that the current zoning regulations in the central commercial district do not adequately incentivize the type of high-density, mixed-use development envisioned in the Comprehensive Plan; and</p>
+<p><strong>WHEREAS</strong>, the establishment of a Commercial Core District Overlay will provide a regulatory framework to guide future development, ensure architectural consistency, and enhance the public realm; and</p>
+<p><strong>WHEREAS</strong>, the Planning Commission held a public hearing on March 15, 2024, and voted to recommend approval of this amendment to the City Council.</p>
+<p class="text-center font-bold my-8">NOW, THEREFORE, BE IT ORDAINED BY THE CITY COUNCIL OF THE MUNICIPALITY AS FOLLOWS:</p>
+<p><strong>Section 1. Amendment of Zoning Map.</strong> The official Zoning Map is hereby amended to apply the Commercial Core District Overlay (CCDO) to the parcels designated on the map attached hereto as Exhibit A.</p>
+<p><strong>Section 2. Permitted Uses.</strong> Within the CCDO, ground-floor commercial uses shall be required for all new construction facing primary arterial streets. Residential uses shall be permitted on upper floors without density restrictions, subject to design review.</p>
+<p><strong>Section 3. Development Standards.</strong> Building heights within the CCDO may be increased to a maximum of 85 feet, provided that the development incorporates public amenities such as plazas, widened sidewalks, or public art, as detailed in the Commercial Core Design Guidelines.</p>
+</div>
+</div>
+</div>
+<!-- Attachments -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT shadow-sm p-md">
+<h3 class="font-h3 text-h3 text-primary mb-sm flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="attachment">attachment</span>
+                            Attachments
+                        </h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+<a class="flex items-center gap-3 p-3 border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors" href="#">
+<div class="w-10 h-10 bg-error-container text-on-error-container rounded-DEFAULT flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-bold text-label-bold text-primary truncate">Exhibit A - Overlay Map.pdf</p>
+<p class="font-caption text-caption text-on-surface-variant">2.4 MB • Uploaded Apr 12, 2024</p>
+</div>
+</a>
+<a class="flex items-center gap-3 p-3 border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors" href="#">
+<div class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-DEFAULT flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-bold text-label-bold text-primary truncate">Planning Commission Staff Report.docx</p>
+<p class="font-caption text-caption text-on-surface-variant">1.1 MB • Uploaded Apr 10, 2024</p>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Metadata & History -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Metadata Panel -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT shadow-sm p-md">
+<h3 class="font-h3 text-h3 text-primary mb-md border-b border-surface-variant pb-2">Metadata</h3>
+<dl class="space-y-4">
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Sponsor</dt>
+<dd class="font-body-ui text-body-ui text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="person">person</span>
+                                    Councilmember E. Reynolds
+                                </dd>
+</div>
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Co-Sponsors</dt>
+<dd class="font-body-ui text-body-ui text-primary">C. Davis, M. Chang</dd>
+</div>
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Introduction Date</dt>
+<dd class="font-body-ui text-body-ui text-primary">April 15, 2024</dd>
+</div>
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Committee Assignment</dt>
+<dd class="font-body-ui text-body-ui text-primary">Planning &amp; Zoning Committee</dd>
+</div>
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Fiscal Impact</dt>
+<dd class="font-body-ui text-body-ui text-primary">Revenue Neutral</dd>
+</div>
+<div>
+<dt class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Tags</dt>
+<dd class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT bg-surface-variant text-on-surface text-caption font-caption">Zoning</span>
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT bg-surface-variant text-on-surface text-caption font-caption">Commercial</span>
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT bg-surface-variant text-on-surface text-caption font-caption">Overlay</span>
+<button class="inline-flex items-center justify-center w-6 h-6 rounded-DEFAULT border border-dashed border-outline text-outline hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+</dd>
+</div>
+</dl>
+</div>
+<!-- Version History Stepper -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-DEFAULT shadow-sm p-md">
+<h3 class="font-h3 text-h3 text-primary mb-md border-b border-surface-variant pb-2">Version History</h3>
+<div class="relative pl-4 border-l-2 border-surface-variant space-y-6">
+<!-- Current Step -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-surface-container-lowest border-2 border-primary"></div>
+<p class="font-label-bold text-label-bold text-primary">First Reading</p>
+<p class="font-caption text-caption text-on-surface-variant">Scheduled for April 22, 2024</p>
+</div>
+<!-- Completed Steps -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-primary"></div>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Committee Recommendation: Approve</p>
+<p class="font-caption text-caption text-outline">April 18, 2024 • Planning &amp; Zoning</p>
+<a class="inline-flex items-center gap-1 mt-1 font-caption text-caption text-tertiary-container hover:underline" href="#">
+<span class="material-symbols-outlined text-[14px]" data-icon="visibility">visibility</span>
+                                    View Report
+                                </a>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-primary"></div>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Introduced to Council</p>
+<p class="font-caption text-caption text-outline">April 15, 2024 • Regular Session</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-3 h-3 rounded-full bg-primary"></div>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Initial Draft Created</p>
+<p class="font-caption text-caption text-outline">March 28, 2024 • Legis. Drafting Office</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-900 w-full mt-auto border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-10 py-8 max-w-[1440px] mx-auto">
+<p class="font-public-sans text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4 md:mb-0">
+                © 2024 Municipal Legislative Tracking System. All rights reserved. Official Public Record.
+            </p>
+<nav class="flex flex-wrap gap-4 font-public-sans text-xs uppercase tracking-wider">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-700 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-700 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-700 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Accessibility Statement</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-700 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Open Data Portal</a>
+</nav>
+</div>
+</footer>
+</body></html>
