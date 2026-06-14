@@ -1,0 +1,214 @@
+1. General Settings
+
+Core system customization.
+
+Suggested Options
+System Name
+LGU Name
+Municipality Logo
+Theme Color
+Default Language
+Timezone
+Date Format
+Footer Text
+Example
+System Name: LexTrack
+LGU: LGU Mambajao
+Theme: Red/White
+2. Legislative Configuration
+
+Very important for ordinance workflow.
+
+Settings
+Auto Ordinance Numbering
+Prefix Format
+Fiscal Year Reset
+Default Status
+Archive Retention Rules
+Example
+ORD-2026-001
+RES-2026-001
+3. User & Role Management
+
+Your system needs role-based control.
+
+Roles
+Super Admin
+Secretary
+SB Member
+Committee Staff
+Viewer
+Features
+Create user
+Disable account
+Reset password
+Assign permissions
+4. Permission Matrix
+
+One of the best enterprise features.
+
+Example:
+
+Module	View	Edit	Delete	Export
+Ordinances	✅	✅	❌	✅
+Archive	✅	❌	❌	✅
+5. Security Settings
+
+Important for offline government systems.
+
+Features
+Session timeout
+Login attempt limits
+Password complexity
+Audit logging
+Activity tracking
+Auto logout
+Recommended
+Auto Logout: 15 mins inactive
+6. Backup & Restore Settings
+
+Critical for offline systems.
+
+Features
+Manual backup
+Auto backup scheduler
+Backup compression
+Restore point list
+Recommended UI
+Last Backup:
+May 12, 2026 — Successful
+7. Storage Management
+
+Useful for scanned documents.
+
+Show
+Storage used
+PDF count
+Large files
+Duplicate files
+Add:
+Cleanup tools
+Compression suggestions
+8. Archive Settings
+
+Specific for legislative archives.
+
+Suggested
+Auto archive after approval
+Retention period
+Archive categories
+Restore permissions
+9. Notification Settings
+
+Even offline systems can have internal notifications.
+
+Notifications
+Pending review alerts
+Backup completed
+Failed uploads
+System warnings
+10. Appearance Settings
+
+Your UI is already strong visually.
+
+Add:
+Dark mode
+Compact mode
+Sidebar collapse
+Font scaling
+11. Activity Log Settings
+
+Control audit trail behavior.
+
+Options
+Log retention duration
+Export logs
+Clear old logs
+Track user actions
+12. Database Settings
+
+For admins only.
+
+Show
+Database size
+Last optimization
+Connection status
+Table health
+13. Offline Sync Settings (Optional)
+
+If multiple PCs are connected via LAN.
+
+Features
+Local sync interval
+Conflict resolution
+Sync status
+14. QR & Document Settings
+
+Advanced government feel.
+
+Settings
+Auto generate QR
+Watermark PDFs
+Official seal overlay
+Signature settings
+15. System Information Page
+
+Useful for IT staff.
+
+Show
+Version: 2.0
+Database: MySQL
+Server: XAMPP
+Storage: 120GB
+16. Recommended UI Enhancements
+Your Current UI Can Improve With:
+A. Sticky Save Bar
+
+When changes are made:
+
+Unsaved Changes
+[Save] [Discard]
+B. Settings Search
+
+Search settings instantly.
+
+Example:
+
+Search settings...
+C. Icon-Based Categories
+
+Example:
+
+⚙ General
+🔒 Security
+💾 Backup
+👥 Users
+D. Section Cards
+
+Avoid long forms.
+
+Use grouped cards:
+
+[General]
+[Security]
+[Backup]
+17. Recommended Settings Sidebar
+⚙ General
+🏛 Legislative
+👥 Users & Roles
+🔒 Security
+💾 Backup
+🗂 Archive
+🔔 Notifications
+🎨 Appearance
+📜 Activity Logs
+🖥 System Info
+18. Best Professional Features
+Add These If Possible
+System Health Indicator
+● System Healthy
+Backup Health
+Next Backup: 11:00 PM
+Maintenance Mode
+
+Temporarily lock system.

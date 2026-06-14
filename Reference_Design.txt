@@ -1,0 +1,536 @@
+================================================================================
+  LexTrack — Government Archive of Verified & Enacted Legislation
+  PAGE DESIGN PROMPTS & SPECIFICATIONS
+  System: Municipal Legislative Tracking & Ordinance Management
+================================================================================
+
+DESIGN SYSTEM REFERENCE
+────────────────────────
+Name:        LexTrack Design System
+Personality: Institutional trust, legislative precision, civic authority.
+             Calm efficiency — the UI is an impartial vessel for public records.
+Style:       Modern Corporate / Institutional Minimalism
+
+FONTS
+  Interface:  Public Sans (headers, nav, labels, buttons, captions)
+  Document:   Newsreader serif (ordinance body text, legal content, descriptions)
+
+COLORS
+  Background:              #f7f9fb  (neutral surface)
+  Surface / Cards:         #ffffff  with 1px border #c6c6cd
+  Surface Container:       #eceef0
+  Surface Container High:  #e6e8ea
+  On Surface (text):       #191c1e
+  On Surface Variant:      #45464d
+  Outline:                 #76777d
+  Outline Variant:         #c6c6cd
+  Primary:                 #000000
+  Primary Container (Navy):#131b2e  → used for primary buttons, active states
+  On Primary Container:    #7c839b
+  Secondary Container:     #d5e3fd
+  Error:                   #ba1a1a
+  Error Container:         #ffdad6
+
+STATUS BADGE COLORS
+  Active / Enacted:  background #191c1e, text #ffffff
+  Under Review:      background #d5e3fd, text #0d1c2f
+  Draft:             background #e0e3e5, text #45464d
+  Amended:           background #dbe1ff, text #00174b
+  Repealed:          background #ffdad6, text #93000a
+
+TAG PILL COLOR THEMES
+  tc-blue:   bg #dbe1ff, text #003ea8, border #b4c5ff
+  tc-green:  bg #d3f2d0, text #1a4a17, border #a0d9a0
+  tc-amber:  bg #fef3c7, text #78350f, border #fcd34d
+  tc-red:    bg #ffdad6, text #93000a, border #ffb4ab
+  tc-purple: bg #ede9fe, text #4c1d95, border #c4b5fd
+  tc-teal:   bg #ccfbf1, text #065f46, border #6ee7b7
+  tc-orange: bg #ffedd5, text #7c2d12, border #fed7aa
+  tc-slate:  bg #eceef0, text #45464d, border #c6c6cd
+
+TYPOGRAPHY SCALE
+  h1:         32px, weight 700, line-height 1.2  — page titles
+  h2:         24px, weight 600, line-height 1.3  — section headings
+  h3:         20px, weight 600, line-height 1.4  — card headings
+  body-ui:    16px, weight 400, line-height 1.5  — interface text (Public Sans)
+  body-doc:   18px, weight 400, line-height 1.6  — ordinance text (Newsreader)
+  body-doc-sm:16px, weight 400, line-height 1.5  — document previews (Newsreader)
+  label-bold: 14px, weight 600, letter-spacing 0.02em
+  label-caps: 12px, weight 700, letter-spacing 0.05em, uppercase
+  caption:    13px, weight 400, line-height 1.4
+
+SPACING SYSTEM (8px base unit)
+  xs: 4px | sm: 12px | md: 24px | lg: 40px | xl: 64px | gutter: 24px
+  Max content width: 1440px
+
+BORDER RADIUS
+  Default (cards, inputs, buttons): 0.25rem (4px)
+  Status / tag badges: 9999px (pill)
+  Modals, drawers: 6px
+
+ELEVATION / DEPTH
+  Flat cards:      1px border #c6c6cd, no shadow
+  Elevated cards:  1px border + box-shadow 0 1px 4px rgba(15,23,42,0.04)
+  Modals/drawers:  box-shadow 0 20px 60px rgba(15,23,42,0.18)
+  No heavy shadows anywhere — depth via tonal layering only
+
+SHARED LAYOUT COMPONENTS
+  Sidebar (fixed, 256px wide, white, border-right #e0e3e5)
+    - LexTrack brand mark (navy circle icon + wordmark)
+    - "New Ordinance" primary CTA button (full width, navy #131b2e)
+    - Nav items: Overview, All Ordinances, Pending Review, Manage Tags, Archives
+    - Footer nav: Help Center, Contact Admin
+    - Active nav item: bg #eceef0, border-left 3px solid #131b2e, font-weight 700
+    - Inactive nav item: color #45464d, hover bg #eceef0
+
+  Topbar (sticky, height 60px, white, border-bottom #e0e3e5)
+    - Left: "LexTrack" wordmark + breadcrumb / section label
+    - Right: global search input (220px, icon left), notifications icon, settings icon
+
+  Footer (white, border-top, centered, 11px caption)
+    "© 2024 LexTrack — Government Archive of Verified & Enacted Legislation.
+     Official Public Record."
+
+INTERACTION PATTERNS
+  Clicking any ordinance card or table row → opens 680px side drawer
+  Drawer "Full View" button → opens full-screen document viewer
+  Escape key → closes drawer or full-screen viewer
+  Dropdowns appear on ⋮ button click, dismiss on outside click
+  All data persisted to localStorage (key: LexTrack_ordinances)
+
+================================================================================
+  PAGE 1 — ALL ORDINANCES (Legislative Database)
+================================================================================
+
+ROUTE / NAV STATE
+  Sidebar active: "All Ordinances" (LexTrack icon)
+  Topbar label: "All Ordinances"
+
+PURPOSE
+  The primary data-browsing interface. A comprehensive, searchable, filterable
+  table of every ordinance in the system — past and present. The user's main
+  tool for locating, reviewing, and managing legislative records.
+
+PAGE HEADER
+  Title:    "Ordinance Database"  (h1, 28px bold)
+  Subtitle: "Comprehensive repository of all municipal legislative records.
+             Click any row to view the ordinance."  (14px, #45464d)
+  Actions (top-right):
+    - "Export CSV" button  (secondary style, download icon)
+    - "New Ordinance" button  (primary navy style, add icon)
+
+FILTER BAR  (card-elevated, padding 16px, rounded 6px, margin-bottom 14px)
+  Row 1 — Controls:
+    - Full-width search input with search icon inside left padding
+      Placeholder: "Search by title, number, tags, sponsor…"
+      Behavior: filters table on every keystroke (oninput)
+    - "All Statuses" dropdown (150px)  → Active/Enacted, Under Review, Draft,
+                                         Amended, Repealed
+    - "Any Year" dropdown (120px)  → populated dynamically from data years
+    - "Any Doc Type" dropdown (150px)  → Any, Has Hard Copy, Has Soft Copy
+    - Clear-filters ghost icon button (filter_alt_off icon, tooltip)
+
+  Row 2 — Tag filter chips:
+    Label: "Tags:" (11px, uppercase, #76777d)
+    One pill-shaped chip per tag in the system.
+    Chip states: default (white bg, border #c6c6cd) / active (navy bg, #7c839b text + check icon)
+    Clicking a chip toggles it; multiple chips can be active simultaneously
+    (AND logic — ordinance must match ALL selected tags)
+
+DATA TABLE  (card-elevated, overflow-x auto, rounded 6px)
+  Columns:
+    1. No.           (130px, sortable) — Ordinance number in bold blue #003ea8
+    2. Title/Desc    (min 240px)      — Title bold 13px + italic Newsreader serif description below
+    3. Tags          (min 150px)      — Tag pills (sm size), max 3 shown, "+N" overflow pill
+    4. Date          (115px, sortable)— Formatted "Oct 24, 2024", color #45464d
+    5. Sponsor       (160px, sortable)— Plain text, truncated with ellipsis, title attr
+    6. Status        (115px)          — Status badge pill (color-coded)
+    7. Docs          (90px, centered) — PDF icon (red if attached, gray if not)
+                                        + Description icon (blue if soft copy, gray if not)
+                                        Both icons have tooltip via data-tip attr
+    8. Actions       (56px, centered) — ⋮ dropdown with:
+                                         • View Details (opens drawer)
+                                         • Full View (opens full-screen)
+                                         • Edit
+                                         • ─────── divider
+                                         • Delete (danger red)
+
+  Table styling:
+    Header: bg #eceef0, 12px uppercase label-caps, sticky top
+    Rows: zebra striping (odd: #fff, even: #f7f9fb)
+    Row hover: bg #f0f2ff, first cell gets border-left 3px solid #131b2e
+    All rows cursor: pointer — entire row is clickable to open drawer
+    Last row has no bottom border
+
+  Empty state (when no results):
+    Centered, search_off icon (40px, #c6c6cd) + "No ordinances match your current filters."
+
+PAGINATION  (bg #eceef0, border-top, flex space-between)
+  Left: "Showing 1–12 of 48 records" (12px, #45464d, <strong> on numbers)
+  Right: prev button (‹) | numbered page buttons | ellipsis | next button (›)
+    Active page: navy bg #131b2e, white text
+    Disabled buttons: 30% opacity
+    Page size: 12 per page
+
+DRAWER — Ordinance Detail Panel  (680px wide, slides in from right)
+  Header:
+    - Ordinance number (11px uppercase, #76777d) + status badge inline
+    - Title (17px bold, Public Sans)
+    - Meta line: date · 👤 sponsor · PDF indicator · Editable indicator
+    - Top-right: X close button + "Full View" secondary button (stacked)
+
+  Tabs: Document | PDF | Metadata | History
+    Active tab: border-bottom 3px #131b2e, color #191c1e
+
+  Tab — Document:
+    Subheader bar: "Editable Soft Copy" label + "Expand" ghost button
+    Content area: 32px 40px padding
+      - Ordinance number (11px uppercase, muted)
+      - Title (19px bold)
+      - Description in Newsreader italic
+      - Horizontal rule
+      - Full Newsreader serif body text (16px, line-height 1.75)
+    Empty state: centered icon + "No editable content yet" + "Add Content" button
+
+  Tab — PDF:
+    Card centered:
+      - Red icon square (60px, #ffdad6 bg, picture_as_pdf icon)
+      - Filename text (14px bold)
+      - "Official signed hard copy" caption
+      - "Preview" secondary button + "Download" primary button
+    Empty state: gray icon + "No PDF hard copy attached" + "Attach PDF" button
+
+  Tab — Metadata:
+    Definition list (label / value pairs, border-bottom between rows):
+      Number, Status badge, Date Enacted, Sponsor, Description (Newsreader),
+      Tags (pills), Hard Copy (red icon + name or "No PDF"), Soft Copy status, Notes
+
+  Tab — History (Legislative Timeline):
+    Vertical stepper with left 2px line (#e0e3e5)
+    Each step has a circle dot:
+      Most recent: solid navy circle (#131b2e)
+      Past steps: hollow circle, border #131b2e
+    Event name (13px bold) + date + actor below in caption
+
+  Footer bar (bg #f7f9fb):
+    Left: tag pills for the ordinance (max 4, +N overflow)
+    Right: "Edit" ghost button + "Full View" primary button
+
+FULL-SCREEN DOCUMENT VIEWER  (fixed overlay, full viewport)
+  Toolbar:
+    Left: "← Back" ghost button | divider | Ordinance number (11px caps) + title (15px bold)
+    Right: status badge | "Print" ghost | "Edit" secondary button
+
+  Tabs: Full Document | Metadata | Legislative History | Hard Copy (PDF)
+
+  Tab — Full Document:
+    Scrollable "paper" card (max-width 780px, centered, white bg, 64px 72px padding,
+    subtle border + shadow mimicking a physical document):
+      - Letterhead:  "LexTrack · Municipal Legislative Registry" (11px caps)
+                     Ordinance number (13px caps)
+                     Title (22px bold, Public Sans)
+                     Description (Newsreader italic, 15px)
+                     Bottom border (2px solid #191c1e)
+      - Metadata strip (3 columns): Date Enacted | Sponsor | Status badge
+        Separated by bottom border
+      - Tag pills row
+      - Body text: Newsreader serif, 17px, line-height 1.8
+      - Footer: "Official Municipal Record — [number]" · "Printed: [date]"
+    Empty state: 52px icon + "No soft copy content available" + "Add Content" button
+
+  Tab — Metadata: Same definition list as drawer, inside the paper card
+  Tab — History:  Same stepper timeline as drawer, inside the paper card
+  Tab — Hard Copy: PDF attachment card (centered, download/preview buttons)
+                   Or empty state with "Attach PDF" CTA
+
+================================================================================
+  PAGE 2 — PENDING REVIEW
+================================================================================
+
+ROUTE / NAV STATE
+  Sidebar active: "Pending Review" (pending_actions icon)
+  Topbar label: "Pending Review"
+
+PURPOSE
+  A focused queue of all ordinances in "Under Review" or "Draft" status.
+  Helps committee clerks and administrators quickly identify which items
+  need action without filtering the full database.
+
+PAGE HEADER
+  Title:    "Pending Review"  (h1, 28px bold, #191c1e)
+  Subtitle: "Ordinances awaiting committee action or first reading."  (14px, #45464d)
+
+CONTENT AREA — Ordinance Card List
+  Layout: vertical stack of cards, gap 8px
+  Each card (card-elevated, padding 16px, rounded 6px, cursor pointer):
+
+    Left section (icon block):
+      42×42px square, bg #eceef0, rounded 6px
+      Material icon: pending_actions (for review) or edit_document (for draft)
+      Icon color: #45464d
+
+    Right section:
+      Row 1: Ordinance number (13px bold) + status badge (right-aligned)
+      Row 2: Ordinance title (14px, Newsreader serif, weight 400)
+      Row 3: Description snippet (12px, #45464d, truncated with ellipsis)
+      Row 4 (meta strip, flex, gap 12px):
+        📅 date (11px, #76777d)
+        👤 sponsor (11px, #76777d)
+        Tag pills (sm size, flex row)
+
+    Far right (action column):
+      "Edit" secondary button (sm)
+
+    Hover state: border-color changes to #131b2e (transition 0.12s)
+
+  Clicking the card body → opens 680px drawer (same drawer as All Ordinances page)
+
+  Empty state (when no pending items):
+    Centered, task_alt icon (44px, #c6c6cd)
+    "No pending ordinances." in #76777d
+    Optionally: "All ordinances are up to date."
+
+DATA LOGIC
+  Filters state.ordinances where status === 'review' OR status === 'draft'
+  No additional filter bar needed — this is already a pre-filtered view
+  Cards sorted by date descending (most recent first)
+
+================================================================================
+  PAGE 3 — MANAGE TAGS
+================================================================================
+
+ROUTE / NAV STATE
+  Sidebar active: "Manage Tags" (sell icon)
+  Topbar label: "Manage Tags"
+
+PURPOSE
+  The tag administration interface. Users create reusable tags that can be
+  assigned to multiple ordinances. Tags are color-coded and searchable.
+  This page gives visibility into tag usage across the whole system.
+
+PAGE HEADER
+  Title:    "Tag Management"  (h1, 28px bold)
+  Subtitle: "Create, edit, and organize tags used to categorize ordinances."
+  Top-right action: "New Tag" primary button (add icon)
+
+LAYOUT — Two-column grid (1fr + 360px sidebar)
+
+LEFT COLUMN — Tag List (card-elevated, rounded 6px, overflow hidden)
+
+  Table header bar (bg #eceef0, border-bottom, padding 14px 16px):
+    Left: "All Tags" label (12px uppercase, #45464d)
+    Right: Search input (180px, 28px height, search icon inside)
+            Placeholder: "Search tags…"
+            Filters the list on keystroke
+
+  Tag list (padding 12px, flex-column, gap 6px):
+    Each tag row (card-style, padding 8px 12px, border #e6e8ea, bg #fafafa):
+
+      Left group (flex, gap 10px):
+        Tag pill (in its color theme, non-interactive, cursor default)
+        Description text (12px, #76777d, truncated)
+
+      Right group (flex, gap 8px, flex-shrink 0):
+        "N ord." usage count (12px, #45464d, bold)
+        Edit ghost icon button (edit icon, 16px)
+        Delete ghost icon button (delete icon, 16px, red color #93000a)
+
+  Empty state: "No tags found." centered in muted gray
+
+RIGHT COLUMN — Tag Statistics Panel (card-elevated, padding 20px, rounded 6px)
+
+  Title: "Tag Statistics" (14px bold, #191c1e)
+
+  For each tag (sorted by usage count descending):
+    Row layout:
+      Top row: tag pill (left) + count number (right, 11px bold)
+      Progress bar (height 4px, bg #eceef0, rounded 2px):
+        Fill: navy #131b2e
+        Width: percentage relative to most-used tag
+        Animated width transition (0.4s)
+    Gap 8px between rows
+
+NEW TAG MODAL  (max-width 420px)
+  Title: "New Tag" or "Edit Tag"
+
+  Fields:
+    Tag Name (required) — text input, placeholder "e.g., Agriculture"
+
+    Color Theme — color swatch grid:
+      8 swatches in a flex-wrap row
+      Each swatch: 28×28px, rounded 6px, shows its color theme
+      Selected: border 2px solid #131b2e + check icon inside
+      Labels below each swatch (9px, #76777d): Gray, Blue, Green, Amber,
+                                                Red, Purple, Teal, Orange
+
+    Description (optional) — text input, placeholder "Short description of scope"
+
+  Footer: Cancel ghost | "Save Tag" primary
+
+DELETE CONFIRMATION
+  When delete is clicked, a confirm dialog appears:
+  Title: "Delete '[tag name]'?"
+  Body:  "This tag is used in N ordinance(s). Deleting it will remove it
+          from all ordinances."
+  Actions: Cancel ghost | "Delete" danger button (red)
+
+TAG CREATION FROM INLINE INPUT (also available inside the New Ordinance modal)
+  A text input + "+ Create Tag" secondary button
+  On submit: creates tag with auto-assigned color from TAG_COLORS rotation,
+  immediately adds it to the selected tags, shows success toast
+
+DATA LOGIC
+  Tags stored as: { id, name, color, desc }
+  Usage count: count of ordinances where tag id appears in their tags array
+  Deleting a tag removes it from all ordinances' tag arrays
+
+================================================================================
+  PAGE 4 — ARCHIVES
+================================================================================
+
+ROUTE / NAV STATE
+  Sidebar active: "Archives" (inventory_2 icon)
+  Topbar label: "Archives"
+
+PURPOSE
+  A read-only-style view of repealed and superseded ordinances. Provides
+  institutional memory — legal researchers can locate historical legislation
+  that is no longer in force but remains part of the official public record.
+
+PAGE HEADER
+  Title:    "Archives"  (h1, 28px bold)
+  Subtitle: "Repealed and superseded legislative records."  (14px, #45464d)
+
+CONTENT AREA — Archived Ordinance Card List
+  Layout: vertical stack of cards, gap 8px
+  Each card (card-elevated, padding 16px, rounded 6px, cursor pointer):
+
+    Left section (icon block):
+      42×42px square, bg #eceef0, rounded 6px
+      Material icon: inventory_2
+      Icon color: #45464d
+
+    Right section:
+      Row 1: Ordinance number (13px bold, #191c1e) + "REPEALED" badge (right-aligned)
+             Badge: bg #ffdad6, text #93000a, pill shape
+      Row 2: Ordinance title (14px, Newsreader serif)
+      Row 3: Description (12px, #45464d, truncated, ellipsis)
+      Row 4 (meta strip):
+        📅 original date enacted (11px, #76777d)
+        👤 sponsor (11px, #76777d)
+        Tag pills (sm size)
+
+    Far right:
+      "Edit" secondary button (sm) — allows status change (e.g., restore to Active)
+
+    Hover state: border-color #131b2e
+
+  Clicking card body → opens 680px drawer (same drawer component)
+  The drawer shows all tabs: Document, PDF, Metadata, History
+  The History tab is especially important here — it shows the repeal event
+  as the most recent step in the timeline
+
+  Empty state (when no archived items):
+    Centered, inventory_2 icon (44px, #c6c6cd)
+    "No archived ordinances." in #76777d
+
+DATA LOGIC
+  Filters state.ordinances where status === 'repealed'
+  Sorted by dateEnacted descending (most recently repealed first)
+
+VISUAL TREATMENT NOTE
+  Archived records should feel "quieter" than active ones.
+  The repealed status badge (light red) immediately signals these are inactive.
+  Card hover still applies (they're still clickable for reference).
+  No "New Ordinance" CTA on this page — archives are not a creation interface.
+
+================================================================================
+  SHARED DRAWER — Used Across ALL Four Pages
+================================================================================
+
+The 680px slide-in drawer is the primary detail/reading interface for all
+pages. It is shared across All Ordinances, Pending Review, and Archives.
+Manage Tags uses its own dedicated modal instead.
+
+DRAWER STRUCTURE
+  Overlay: semi-transparent backdrop (rgba 15,23,42, 0.3) with blur(1px)
+           Clicking overlay closes the drawer
+  Panel: fixed right edge, full viewport height, white bg
+         transform: translateX(100%) → translateX(0) animated 0.28s cubic-bezier
+
+  HEADER (padding 18px 24px 14px, border-bottom)
+    Left column:
+      - Ordinance number (11px, uppercase, #76777d) + status badge (inline row)
+      - Title (17px bold, Public Sans)
+      - Meta line (12px, #76777d): date · 👤 sponsor · PDF indicator · Editable indicator
+        Separated by · in #c6c6cd
+    Right column (column, right-aligned):
+      - × close button (ghost icon)
+      - "Full View" secondary button (11px, open_in_full icon)
+
+  TAB BAR (padding 0 24px, border-bottom 2px #e0e3e5)
+    Tabs: Document | PDF | Metadata | History
+    Active: border-bottom 3px solid #131b2e, color #191c1e, font-weight 600
+    Inactive: color #76777d, hover color #191c1e
+
+  BODY (flex:1, overflow-y auto)
+    Content varies per tab — see Page 1 spec for full tab details
+
+  FOOTER BAR (padding 12px 24px, border-top, bg #f7f9fb, space-between)
+    Left: tag pills (max 4 visible, sm size, +N overflow pill)
+    Right: "Edit" ghost button + "Full View" primary button
+
+  KEYBOARD: Escape key closes the drawer
+  FOCUS: drawer traps attention; clicking outside overlay also closes
+
+================================================================================
+  FULL-SCREEN VIEWER — Used Across ALL Four Pages
+================================================================================
+
+Triggered by: "Full View" button in drawer footer or ⋮ dropdown menu
+Closes with: ← Back button or Escape key
+
+The full-screen viewer renders the ordinance as a formal legal document,
+styled like a physical paper record inside a white "paper" container.
+
+TOOLBAR (white, border-bottom, sticky)
+  Left:  "← Back" ghost button | 1px divider | number (11px caps) + title (15px bold)
+  Right: status badge | "Print" ghost (window.print()) | "Edit" secondary button
+
+TABS (white sub-bar, below toolbar)
+  Full Document | Metadata | Legislative History | Hard Copy (PDF)
+
+PAPER CONTAINER (max-width 780px, centered, 48px vertical margin,
+  padding 64px 72px, white bg, 1px border #e0e3e5, subtle shadow)
+
+FULL DOCUMENT TAB — Paper layout:
+  1. Letterhead:
+       "LexTrack · Municipal Legislative Registry" (11px, letter-spacing 0.12em, uppercase, #76777d)
+       Ordinance number (13px, uppercase, #45464d)
+       Title (22px bold, Public Sans)
+       Description (Newsreader italic, 15px, max-width 540px, centered)
+       Bottom border: 2px solid #191c1e
+
+  2. Metadata strip (3-column grid):
+       Date Enacted | Sponsor | Status badge
+       10px uppercase labels in #76777d, 13px bold values
+       Bottom border: 1px solid #e0e3e5
+
+  3. Tag pills row (flex-wrap, gap 5px)
+
+  4. Ordinance body text:
+       Newsreader serif, 17px, line-height 1.8
+       Paragraphs, lists fully rendered from saved HTML
+       Strong / em / underline preserved from rich text editor
+
+  5. Document footer (border-top, flex space-between):
+       "Official Municipal Record — [number]"  ·  "Printed: [date]"
+       Font: 11px, #76777d
+
+METADATA TAB: Definition list inside paper card (same fields as drawer)
+HISTORY TAB:  Vertical timeline stepper inside paper card
+HARD COPY TAB: PDF attachment panel or empty-state with "Attach PDF" CTA
+
+================================================================================
+  END OF DESIGN PROMPTS
+================================================================================

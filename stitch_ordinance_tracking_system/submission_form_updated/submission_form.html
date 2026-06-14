@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LexTrack Central - New Ordinance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f7f9fb",
+                        "primary-container": "#131b2e",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline": "#76777d",
+                        "inverse-surface": "#2d3133",
+                        "primary": "#000000",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#45464d",
+                        "secondary-container": "#d5e3fd",
+                        "on-surface": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "on-tertiary-container": "#497cff",
+                        "tertiary-fixed-dim": "#b4c5ff",
+                        "surface-tint": "#565e74",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "secondary-fixed": "#d5e3fd",
+                        "inverse-primary": "#bec6e0",
+                        "secondary": "#515f74",
+                        "surface-dim": "#d8dadc",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#00174b",
+                        "on-tertiary-fixed": "#00174b",
+                        "inverse-on-surface": "#eff1f3",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#003ea8",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#57657b",
+                        "surface-bright": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "max-width": "1440px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Public Sans"],
+                        "body-doc": ["Newsreader"],
+                        "h3": ["Public Sans"],
+                        "caption": ["Public Sans"],
+                        "body-doc-sm": ["Newsreader"],
+                        "h1": ["Public Sans"],
+                        "h2": ["Public Sans"],
+                        "body-ui": ["Public Sans"],
+                        "label-caps": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-doc": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "body-doc-sm": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-ui": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-ui text-body-ui flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-public-sans text-sm h-screen w-64 border-r border-r border-slate-200 dark:border-slate-800 flat no shadows flex flex-col h-full fixed left-0 top-0 py-6 z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden">
+<img alt="Municipal Seal" class="w-full h-full object-cover" data-alt="close up of a generic classic gold municipal city seal on solid background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzXvneq1M771CCBCjykieMurTRhSENFu8sNtw_uBUq8dk_vCkEp_5yX_lk9OYbUrGkfmZhrAilOnYYPAbq4EVCB0p_sErh9zjfIX3wQFEzqE8ysajhEXzxVnFfO_F5_Vu2L55Faw2r0wf4b0SJXsGjFA6a1MFySttNUnVLJWd0KReU4KJMYWNOADZEvRk6eZw9_IPsyc5JaFqjZqVvLC3S4Ufg9SsyyuXjuPdYiOKCfRiJYbltc1AIKtR78zxFhc69HPdiNxhOkOM"/>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white text-base">City Registry</div>
+<div class="text-slate-500 text-xs">Legislative Division</div>
+</div>
+</div>
+<div class="px-6 mb-6">
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-2 rounded flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Ordinance
+            </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                All Ordinances
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+                Recent Activity
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+                Pending Review
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Archives
+            </a>
+</nav>
+<div class="mt-auto px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Contact Admin
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 flex flex-col min-w-0">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-public-sans text-sm font-medium w-full sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 flat no shadows flex items-center justify-between px-10 py-4 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold text-slate-900 dark:text-slate-50 tracking-tight">LexTrack Central</div>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200" href="#">Database</a>
+<a class="text-slate-900 dark:text-white border-b-2 border-slate-900 dark:border-white pb-1 font-bold Active: opacity-80 transition-opacity" href="#">Submissions</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800 border-none rounded text-sm focus:ring-1 focus:ring-slate-300 w-64 outline-none" placeholder="Search records..." type="text"/>
+</div>
+<button class="text-slate-500 hover:text-slate-900 dark:hover:text-white p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-slate-900 dark:hover:text-white p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden ml-2 cursor-pointer border border-slate-200">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="professional headshot of a person in business casual attire on neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqCQEGoGDmRaffLG_pGv8cwbjMrTDWOzJXxl8Pir2I_WwRdjtPMP2cKaTIObaTFbfBUfaJeXH0lc-6E6FW1vJiKkxShLETMxkzogeuoavT1gHe1LPXvrMYlRDrtBuSQ3KEp8OCbyrzCBkj4hmIIBEQoyU5aE_i3fIUnn6ViSgwT04YqikQ5A-qjHRNddc6V51Xo2OEjvOaUC4y9CT6e0V83_8T1j1AdPM3n2HcPAv94SmVYZg0KAY2MTV7g3ai1hnmU29EGMTPpUQ"/>
+</div>
+</div>
+</header>
+<!-- Form Canvas -->
+<main class="flex-1 p-lg max-w-[1024px] mx-auto w-full">
+<div class="mb-md">
+<div class="flex items-center gap-2 text-caption font-caption text-on-surface-variant mb-2">
+<span>Submissions</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-medium">New Ordinance</span>
+</div>
+<h1 class="font-h1 text-h1 text-on-surface">Submit New Ordinance</h1>
+<p class="font-body-ui text-body-ui text-on-surface-variant mt-1">Complete the required metadata and document content for legislative review.</p>
+</div>
+<form class="space-y-gutter">
+<!-- Section 1: Basic Info -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-lg p-md shadow-sm">
+<h2 class="font-h3 text-h3 text-on-surface mb-sm border-b border-surface-variant pb-2">Basic Information</h2>
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Ordinance Title <span class="text-error">*</span></label>
+<input class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="e.g., Amendment to Zoning Code Section 4A" type="text"/>
+</div>
+<div class="col-span-12 md:col-span-6">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Proposed Number (Optional)</label>
+<input class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Leave blank for auto-assignment" type="text"/>
+</div>
+<div class="col-span-12 md:col-span-6">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Originating Department <span class="text-error">*</span></label>
+<select class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors appearance-none">
+<option disabled="" selected="" value="">Select Department...</option>
+<option>City Planning</option>
+<option>Public Works</option>
+<option>Health &amp; Human Services</option>
+<option>Finance</option>
+</select>
+</div>
+<div class="col-span-12 md:col-span-6">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Primary Sponsor</label>
+<input class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Council Member Name" type="text"/>
+</div>
+</div>
+</section>
+<!-- Section 2: Document Content -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-lg p-md shadow-sm">
+<h2 class="font-h3 text-h3 text-on-surface mb-sm border-b border-surface-variant pb-2">Document Content</h2>
+<div class="mb-md">
+<h3 class="font-label-bold text-label-bold text-on-surface mb-xs">Hard Copy Upload</h3>
+<p class="font-caption text-caption text-on-surface-variant mb-2">Upload the scanned or finalized PDF version of the ordinance.</p>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-lg text-center hover:bg-surface-container-low transition-colors cursor-pointer bg-surface flex flex-col items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant">upload_file</span>
+<div class="font-body-ui text-body-ui text-on-surface">Drag and drop hard copy files here or <span class="text-primary font-label-bold underline">browse</span></div>
+<div class="font-caption text-caption text-on-surface-variant">PDF only, up to 50MB</div>
+</div>
+</div>
+<div class="mb-4">
+<h3 class="font-label-bold text-label-bold text-on-surface mb-xs">Soft Copy Editor</h3>
+<p class="font-caption text-caption text-on-surface-variant mb-2">Edit the text version for search and processing.</p>
+<div class="border border-outline-variant rounded overflow-hidden">
+<!-- Toolbar Mockup -->
+<div class="bg-surface-container border-b border-outline-variant px-sm py-2 flex items-center gap-2 overflow-x-auto">
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">format_underlined</span></button>
+<div class="w-px h-5 bg-outline-variant mx-1"></div>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">format_list_numbered</span></button>
+<div class="w-px h-5 bg-outline-variant mx-1"></div>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">link</span></button>
+</div>
+<!-- Editor Area -->
+<textarea class="w-full bg-surface border-none p-md text-body-doc font-body-doc focus:ring-0 outline-none resize-y" placeholder="Enter the official text of the ordinance here..." rows="10"></textarea>
+</div>
+</div>
+</section>
+<!-- Section 3: Metadata -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-lg p-md shadow-sm">
+<h2 class="font-h3 text-h3 text-on-surface mb-sm border-b border-surface-variant pb-2">Tracking &amp; Metadata</h2>
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 md:col-span-6">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Target Effective Date</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="date"/>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Status</label>
+<select class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors appearance-none">
+<option value="active">Active</option>
+<option value="amended">Amended</option>
+<option value="repealed">Repealed</option>
+</select>
+</div>
+<div class="col-span-12">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Tags / Keywords</label>
+<div class="relative border border-outline-variant rounded bg-surface p-1 focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-colors mb-2 flex flex-wrap gap-1 items-center">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container-high text-on-surface-variant font-caption text-caption">
+                                    Zoning <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-on-surface">close</span>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container-high text-on-surface-variant font-caption text-caption">
+                                    Commercial <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-on-surface">close</span>
+</span>
+<input class="flex-1 bg-transparent border-none min-w-[150px] px-2 py-1 text-body-ui font-body-ui focus:ring-0 outline-none" placeholder="Add or create tags..." type="text"/>
+</div>
+<button class="text-primary font-label-bold text-label-bold hover:underline" type="button">+ Create New Tag</button>
+</div>
+<div class="col-span-12">
+<label class="block font-label-bold text-label-bold text-on-surface mb-xs">Notes / Remarks</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded px-sm py-2 text-body-ui font-body-ui focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-y" placeholder="Add any additional notes or remarks here..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-sm pt-md">
+<button class="px-6 py-2 rounded border border-outline text-on-surface font-label-bold text-label-bold hover:bg-surface-container-low transition-colors" type="button">
+                        Save Draft
+                    </button>
+<button class="px-6 py-2 rounded bg-primary text-on-primary font-label-bold text-label-bold hover:opacity-90 transition-opacity shadow-sm" type="submit">
+                        Submit for Review
+                    </button>
+</div>
+</form>
+</main>
+</div>
+</body></html>
