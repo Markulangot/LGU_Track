@@ -1,4 +1,4 @@
-# Changes Since Project Added
+# Changes Made
 
 This concise changelog summarizes updates made to the codebase after the project directory was added. It focuses on the new resolutions workflow, migration, UI adjustments, and supporting scripts.
 
