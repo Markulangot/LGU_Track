@@ -12,5 +12,3 @@ This concise changelog summarizes updates made to the codebase after the project
 - **Sidebar counts & dashboard**: Updated [actions/get_sidebar_counts.php](actions/get_sidebar_counts.php) and [index.php](index.php) — counts only published records (status IN 'approved','active'); resolutions counted separately.
 - **View page**: Updated [view.php](view.php) — supports `?type=resolution&id=` and aliases fields for shared templates.
 - **Client-side UX**: Replaced user-facing "Network error" toasts with console logging, fixed confirm modal handling, and ensured consistent action rendering in `pending.php`.
-- **Tests**: Added [actions/test_e2e_resolution.php](actions/test_e2e_resolution.php) — DB-level E2E script (created and executed during verification).
-- **Notes / Next steps**: Manual browser E2E is recommended: submit via submit_resolution.php, advance readings in pending.php, and verify results in database.php?type=resolution and activity_log.
